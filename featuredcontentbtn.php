@@ -53,7 +53,7 @@ class PlgButtonEmbedContentBtn extends CMSPlugin
 		$button->name    = 'share';
 		//$button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
 		$button->link    = $link;
-        $button->options = [
+                $button->options = [
                 'height'     => '300px',
                 'width'      => '800px',
                 'bodyHeight' => '70',
