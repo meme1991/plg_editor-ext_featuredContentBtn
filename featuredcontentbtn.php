@@ -7,14 +7,22 @@
 # @License: GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
 # @Copyright: Copyright (c) SPEDI srl
 
+
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Object\CMSObject;
+use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Session\Session;
+
+
 defined('_JEXEC') or die;
 
 /**
- * Editor Featured Content Btn
+ * Editor Embed Content Btn
  *
  * @since  1.5
  */
-class PlgButtonFeaturedContentBtn extends JPlugin
+class PlgButtonEmbedContentBtn extends CMSPlugin
 {
 	/**
 	 * Load the language file on instantiation.
@@ -33,18 +41,24 @@ class PlgButtonFeaturedContentBtn extends JPlugin
 	 */
 	public function onDisplay($name)
 	{
-		$doc  = JFactory::getDocument();
+		//$doc  = JFactory::getUser();
 
-		$link = '../plugins/editors-xtd/featuredcontentbtn/display.php?ih_name='.$name;
+		$link = '../plugins/editors-xtd/embedcontentbtn/display.php?ih_name='.$name;
 
-		JHTML::_('behavior.modal');
-		$button          = new JObject;
+		//JHTML::_('behavior.modal');
+		$button          = new CMSObject();
 		$button->modal   = true;
-		$button->class   = 'btn';
-		$button->text    = JText::_('Contenuto in evidenza');
-		$button->name    = 'featured';
-		$button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
+		//$button->class   = 'btn';
+		$button->text    = JText::_('Contenuto embed');
+		$button->name    = 'share';
+		//$button->options = "{handler: 'iframe', size: {x: 800, y: 500}}";
 		$button->link    = $link;
+        $button->options = [
+                'height'     => '300px',
+                'width'      => '800px',
+                'bodyHeight' => '70',
+                'modalWidth' => '80',
+            ];
 
 		return $button;
 	}
